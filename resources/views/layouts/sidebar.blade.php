@@ -4,7 +4,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ url('/dashboard') }}" class="logo d-flex align-items-center">
             <img src="{{ asset('/') }}assets/img/logo.png" alt="">
-            <span class="d-none d-md-block">Examination System</span>
+            <span class="d-none d-md-block">Visa Processing</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -58,7 +58,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ url('/dashboard') }}">
+            <a class="nav-link " href="{{ url('/home') }}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -67,12 +67,17 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#dis-officer" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-people"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Basic Informaion</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="dis-officer" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Add Student</span>
+                    <a href="{{route('information.index')}}">
+                        <i class="bi bi-circle"></i><span>Data List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('status.index')}}">
+                        <i class="bi bi-circle"></i><span>Status List</span>
                     </a>
                 </li>
             </ul>
