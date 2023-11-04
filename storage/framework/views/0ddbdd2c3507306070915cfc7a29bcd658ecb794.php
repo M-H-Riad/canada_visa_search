@@ -68,7 +68,7 @@
             <ul id="dis-officer" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="<?php echo e(route('information.index')); ?>">
-                        <i class="bi bi-circle"></i><span>Data List</span>
+                        <i class="bi bi-circle"></i><span>Information List</span>
                     </a>
                 </li>
                 <li>

@@ -21,7 +21,7 @@
         <div class="card">
           <div class="card-body">
             <div class="hgt">
-              <h5 class="card-title">Center List</h5>
+              <h5 class="card-title">Information List</h5>
               <div class="bt mt-2"><a href="{{ route('information.edit', $info->id) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i> Edit</a></div>
             </div>
 

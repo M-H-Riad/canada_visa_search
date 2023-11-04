@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplicationStatusController;
 use App\Http\Controllers\InformationController;
+use App\Models\ApplicationStatus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,8 @@ Route::middleware('auth' )->group(function () {
 
 
 #Front routes......
-Route::get('/details/confirm-details', function () {
-    return view('form-details');
-});
+Route::get('/search/information', [App\Http\Controllers\FrontController::class, 'searchPage'])->name('search.info');
+
 Route::post('/details/submit', [App\Http\Controllers\FrontController::class, 'storeBasicData'])->name('basic.data.submit');
 Route::post('/payment-data/submit', [App\Http\Controllers\FrontController::class, 'storePaymentInfo'])->name('payment.submit');
 

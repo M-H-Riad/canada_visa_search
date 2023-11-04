@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicationStatus;
 use App\Models\BasicInfo;
 use App\Models\CardInfo;
+use App\Models\Information;
 use Illuminate\Http\Request;
 use Stripe\Charge;
 // use Stripe\Stripe;
@@ -12,6 +14,43 @@ use Stripe;
 
 class FrontController extends Controller
 {
+    public function searchPage(Request $request)
+    {
+        $status = ApplicationStatus::first();
+        $first_name = null;
+        $last_name = null;
+        $passport = null;
+        $info = null;
+        $lmia = null;
+        $document = null;
+        $second = null;
+        $first = null;
+
+        if (isset($request->first_name) && isset($request->last_name) && isset($request->passport)) {
+
+            $first_name = $request->first_name;
+            $last_name = $request->last_name;
+            $passport = $request->passport;
+            $first = 1;
+
+            $info = Information::where('first_name', $first_name)->where('last_name', $last_name)->where('passport', $passport)->first();
+
+            if (isset($info) && $request->has('lmia') && $request->has('document')) {
+                $lmia = $request->lmia;
+                $document = $request->document;
+
+                if ($info->lmia == $lmia && $info->document_id == $document) {
+                    $second = 1;
+                }
+            }
+        }
+
+
+        return view('form-details', compact('status', 'info', 'first_name', 'last_name', 'passport', 'lmia', 'document', 'second', 'first'));
+    }
+
+
+
     public function storeBasicData(Request $request)
     {
         $validatedData = $request->validate([
