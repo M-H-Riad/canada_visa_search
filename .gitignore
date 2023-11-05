@@ -6,6 +6,10 @@
 # Node artifact files
 node_modules/
 dist/
+vendor/
+.env
+storage/framework/
+
 
 # Compiled Java class files
 *.class

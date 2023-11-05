@@ -24,29 +24,41 @@ class FrontController extends Controller
         $lmia = null;
         $document = null;
         $second = null;
+        $second_result = 0;
         $first = null;
+        $first_result = 0;
 
         if (isset($request->first_name) && isset($request->last_name) && isset($request->passport)) {
+            
+            $request->validate([
+                'captcha' => 'required|captcha'
+            ],
+            ['captcha.captcha'=>'Invalid captcha code.']);
 
             $first_name = $request->first_name;
             $last_name = $request->last_name;
             $passport = $request->passport;
             $first = 1;
+            
 
             $info = Information::where('first_name', $first_name)->where('last_name', $last_name)->where('passport', $passport)->first();
+            if (isset($info)) {
+                $first_result = 1;
+            }
 
             if (isset($info) && $request->has('lmia') && $request->has('document')) {
                 $lmia = $request->lmia;
                 $document = $request->document;
+                $second = 1;
 
                 if ($info->lmia == $lmia && $info->document_id == $document) {
-                    $second = 1;
+                    $second_result = 1;
                 }
             }
         }
 
 
-        return view('form-details', compact('status', 'info', 'first_name', 'last_name', 'passport', 'lmia', 'document', 'second', 'first'));
+        return view('form-details', compact('status', 'info', 'first_name', 'last_name', 'passport', 'lmia', 'document', 'second', 'second_result', 'first', 'first_result'));
     }
 
 
@@ -169,5 +181,10 @@ class FrontController extends Controller
             'success',
             'Payment successful.'
         );
+    }
+    
+    public function refreshCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
     }
 }

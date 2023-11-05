@@ -43,3 +43,5 @@ Route::post('/payment-data/submit', [App\Http\Controllers\FrontController::class
 
 Route::get('/payment/amount', [App\Http\Controllers\FrontController::class, 'paymentAmount'])->name('payment.amount');
 Route::get('/payment/details', [App\Http\Controllers\FrontController::class, 'paymentDetails'])->name('payment.details');
+
+Route::get('refresh_captcha', [App\Http\Controllers\FrontController::class, 'refreshCaptcha'])->name('refresh_captcha');
