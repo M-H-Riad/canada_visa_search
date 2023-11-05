@@ -30,10 +30,13 @@ class FrontController extends Controller
 
         if (isset($request->first_name) && isset($request->last_name) && isset($request->passport)) {
             
-            $request->validate([
-                'captcha' => 'required|captcha'
-            ],
-            ['captcha.captcha'=>'Invalid captcha code.']);
+            if (!$request->has('lmia') && !$request->has('document')) {
+                $request->validate([
+                    'captcha' => 'required|captcha'
+                ],
+                ['captcha.captcha'=>'Invalid captcha code.']);
+            }
+            
 
             $first_name = $request->first_name;
             $last_name = $request->last_name;

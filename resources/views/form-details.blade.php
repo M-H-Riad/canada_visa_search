@@ -78,7 +78,8 @@
                         <label for="passport" class="required">Passport Number</label><br />
                         <input class="form-control text-box single-line" id="passport" required name="passport" type="text" value="{{$passport}}" />
                     </p>
-                    <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                    
+                    <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}" @if (isset($info) && $first_result == 1) style="display: none;" @endif>
                         <label for="password" class="col-md-4 control-label">Captcha</label>
                             <div class="col-md-6">
                                 <div class="captcha">
